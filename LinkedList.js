@@ -20,6 +20,16 @@ class LinkedList{
         }
         this.count++;
     }
+    // 复用方法
+    getElementAt(index){
+        if(index >= 0 && index <= this.count){
+            let node = this.head
+            for(let i = 0; i < index && node !== null; i++)
+                node = node.next
+            return node
+        }
+        return null
+    }
     // 移除元素
     removeAt(index){
         // 越界检查
@@ -29,17 +39,8 @@ class LinkedList{
             if(index === 0){
                 this.head = current.next
             }else{
-                let previous; 
-                /**
-                 * h -> [d1 , n1] -> [d2 , n2] -> [d3 , n3]
-                 * 假如删除第二个
-                 * 遍历以后previous -> [d1 , n1]
-                 * current = [d2 , n2]
-                 */
-                for(let i = 0; i < index; i++){
-                    previous = current;
-                    current = current.next
-                }
+                const previous = this.getElementAt(index - 1)
+                current = previous.next
                 // 删除
                 previous.next = current.next
             }
@@ -48,6 +49,29 @@ class LinkedList{
         }
         return null;
 
+    }
+    // 任意位置插入元素
+    insert(data , index){
+        //检查越界
+        if(index >= 0 && index <= this.count){
+            /* 初始化一个节点 */
+            const node = new Node(data) 
+            if(index === 0){
+                //新插入的接点变成头节点
+                const current = this.head
+                node.next = current
+                this.head = node
+            }else{
+                // 找到要添加位置的前一个节点
+                const previous = this.getElementAt(index - 1)
+                const current = previous.next
+                node.next = current
+                previous.next = node
+            }
+            this.count++
+            return true
+        }
+        return false
     }
 }
 // 节点类
