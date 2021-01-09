@@ -1,5 +1,5 @@
 /**
- * 双向栈
+ * 双向栈链表
  */
 const DoublyLinkedList = require('./DoubleLinkedList');
 class StackLinkedLis{
@@ -30,6 +30,7 @@ class StackLinkedLis{
     toString(){
         return this.items.toString();
     }
+    //清空
     clear(){
         this.items.clear();
     }

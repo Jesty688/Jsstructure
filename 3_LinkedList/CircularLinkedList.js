@@ -1,9 +1,8 @@
 const LinkedList = require('./LinkedList');
 const { Node } = require("../util/core.js");
-/**
+/***
  * 单循环链表
  */
-
 class CircularLinkedList extends LinkedList{
     constructor(){
         super()

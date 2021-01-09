@@ -1,4 +1,7 @@
 const {Node} = require('../util/core')
+/**
+ * 单链表
+ */
 class LinkedList{
     constructor(){
         this.count = 0;
